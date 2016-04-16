@@ -23,7 +23,7 @@ describe('basic usage', function () {
                 }
             }
         };
-        var kError = require('../index')(options);
+        var kError = require('../index');
 
         app.get('/error1', function (req, res, next) {
             next(kError.createError("http.badRequest"));
@@ -34,7 +34,7 @@ describe('basic usage', function () {
         });
 
 
-        app.use(kError.errorHandling)
+        app.use(kError.errorHandling(options))
     });
 
     it('get a default http.badRequest error', function (done) {
