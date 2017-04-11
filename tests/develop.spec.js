@@ -16,7 +16,6 @@ const errorHandler = require('../.');
 describe('basic usage', () => {
   // setup server
   before(() => {
-
     mongoose.connect('mongodb://localhost/errorhandler');
 
     app = express();
@@ -56,9 +55,12 @@ describe('basic usage', () => {
       const toy = new Toy({ color: 'grease', name: 'my name' });
 
       toy.save((err) => {
-
         next(err);
       });
+    });
+
+    app.get('/error4', (req, res, next) => {
+      next(new Error('some.error'));
     });
 
 
@@ -111,25 +113,6 @@ describe('basic usage', () => {
       });
   });
 
-  /*
-  it('get a real Error - throw Error', (done) => {
-    supertest(app)
-      .get('/error3')
-      .send()
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(400)
-      .end((err, res) => {
-        should.not.exist(err);
-        debug(res.body);
-        res.body.should.have.property('message', 'http_error_bad_request');
-        res.body.should.have.property('status', 400);
-        res.body.should.have.property('code', 'http.badRequest');
-        done();
-      });
-  });
-  */
-
   it('get a mongoose Error', (done) => {
     supertest(app)
       .get('/error3')
@@ -146,6 +129,21 @@ describe('basic usage', () => {
       });
   });
 
+  it('get a real Error', (done) => {
+    supertest(app)
+      .get('/error4')
+      .send()
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(500)
+      .end((err, res) => {
+        should.not.exist(err);
+        res.body.should.have.property('code', 'internalError');
+        res.body.should.have.property('message', 'some.error');
+        res.body.should.have.property('status', 500);
+        done();
+      });
+  });
 
   it('change parse', (done) => {
     /*
@@ -157,7 +155,7 @@ describe('basic usage', () => {
   });
 
   it('get a special error translate to another language', (done) => {
-    const translator = function (text) {
+    const translator = function translator(text) {
       return 'translated_text';
     };
 
