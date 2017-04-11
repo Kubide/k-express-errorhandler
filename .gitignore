@@ -1,6 +1,5 @@
 # Logs
 logs
-*.log
 npm-debug.log*
 
 # Runtime data
@@ -31,3 +30,9 @@ node_modules
 
 # Optional REPL history
 .node_repl_history
+.idea/.name
+.idea/k-express-errorhandler.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml

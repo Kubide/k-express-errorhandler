@@ -1,0 +1,35 @@
+{
+  "errorhandler" : {
+    "default": {
+      "detail": "",
+      "msg": "default msg",
+      "status": 500
+    },
+    "http": {
+      "badRequest": {
+        "message": "http_error_bad_request",
+        "status": 400
+      },
+      "unauthorized": {
+        "message": "http_error_unauthorized",
+        "status": 401
+      },
+      "forbidden": {
+        "message": "http_error_forbidden",
+        "status": 401
+      },
+      "notFound": {
+        "message": "http_error_not_found",
+        "status": 404
+      },
+      "conflict": {
+        "message": "http_error_conflict",
+        "status": 409
+      },
+      "unprocessable": {
+        "message": "http_error_unprocessable",
+        "status": 422
+      }
+    }
+  }
+}

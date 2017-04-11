@@ -1,12 +1,16 @@
 {
   "name": "errorhandler-express",
-  "version": "0.0.4",
+  "version": "1.0.1",
   "description": "An express middleware module to generate HTTP responses on error.",
   "main": "index.js",
   "scripts": {
     "ncu": "./node_modules/.bin/ncu",
-    "dev": "clear && export NODE_ENV=development && npm install && npm update && ./node_modules/.bin/nodemon",
-    "test": "clear && export NODE_ENV=development && npm install && ./node_modules/.bin/mocha --reporter spec"
+    "dev": "export DEBUG=kubide* && export NODE_ENV=development && npm update --save && clear && npm run check && ./node_modules/.bin/nodemon --inspect",
+    "test": "export DEBUG=kubide* && clear && ./node_modules/.bin/mocha --reporter spec --recursive ./tests/*.spec.js",
+    "lint": "./node_modules/.bin/eslint .",
+    "unused": "./node_modules/.bin/npm-check ",
+    "check": "./node_modules/.bin/ncu",
+    "update": "./node_modules/.bin/npm-check -u"
   },
   "repository": {
     "type": "git",
@@ -34,16 +38,26 @@
     "node": ">= 4.4.2"
   },
   "dependencies": {
+    "debug": "^2.6.3",
+    "express": "^4.15.2",
     "i18n-xlocale": "0.0.1",
-    "lodash": "^4.9.0",
-    "mongoose": "^4.4.12"
+    "lodash": "^4.17.4",
+    "mocha": "^2.5.3",
+    "mongoose": "^4.9.4",
+    "nodemon": "^1.11.0"
   },
   "devDependencies": {
     "chai": "^3.3.0",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.8.0",
     "express": "^4.13.4",
-    "mocha": "^2.3.3",
+    "mocha": "^3.2.0",
     "nodemon": "^1.7.1",
-    "npm-check-updates": "^2.6.1",
-    "supertest": "^1.1.0"
+    "npm-check": "^5.4.0",
+    "npm-check-updates": "^2.10.3",
+    "supertest": "^3.0.0"
   }
 }
