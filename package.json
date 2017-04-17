@@ -1,6 +1,6 @@
 {
   "name": "errorhandler-express",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An express middleware module to generate HTTP responses on error.",
   "main": "index.js",
   "scripts": {
